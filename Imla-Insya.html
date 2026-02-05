@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>همزة القطع - Hamzah al-Qath'</title>
+    <style>
+        body {
+            font-family: 'Traditional Arabic', 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.8;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .arabic-text {
+            font-size: 20px;
+            text-align: right;
+            direction: rtl;
+            margin-bottom: 10px;
+            padding: 20px;
+            background-color: #fafafa;
+            border-right: 4px solid #2c5aa0;
+            line-height: 2;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+        .arabic-text:hover {
+            background-color: #f0f0f0;
+            transform: translateX(-5px);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .arabic-text.active {
+            background-color: #e8f4f8;
+            border-right: 4px solid #1a4d7a;
+            transform: translateX(-8px);
+            box-shadow: 3px 3px 12px rgba(0,0,0,0.15);
+        }
+        .arabic-text.clicked {
+            animation: arabicPulse 0.5s ease;
+        }
+        @keyframes arabicPulse {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(-10px) scale(1.01);
+            }
+        }
+        .translation-options {
+            display: none;
+            margin-bottom: 10px;
+            text-align: center;
+            direction: ltr;
+        }
+        .translation-options.show {
+            display: block;
+            animation: fadeInBounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes fadeInBounce {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-10px);
+            }
+            60% {
+                transform: scale(1.05) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .lang-button {
+            display: inline-block;
+            padding: 8px 20px;
+            margin: 0 5px;
+            background-color: #2c5aa0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+        }
+        .lang-button:hover {
+            background-color: #1a4d7a;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .lang-button:active {
+            transform: scale(0.95);
+        }
+        .lang-button.active {
+            background-color: #5a8dc0;
+            animation: langButtonPulse 0.5s ease;
+        }
+        @keyframes langButtonPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(90, 141, 192, 0.6);
+            }
+        }
+        .translation-text {
+            font-size: 16px;
+            text-align: left;
+            direction: ltr;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f0f4f8;
+            border-left: 4px solid #5a8dc0;
+            font-style: italic;
+            color: #333;
+            line-height: 1.6;
+            display: none;
+            transform-origin: top;
+        }
+        .translation-text.show {
+            display: block;
+            animation: slideAndFade 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes slideAndFade {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-5px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            text-align: center;
+            color: #2c5aa0;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 10px;
+            font-size: 28px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        strong {
+            font-weight: bold;
+        }
+        ol {
+            text-align: right;
+            direction: rtl;
+        }
+        ol li {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .instruction {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-style: italic;
+            direction: ltr;
+        }
+        .bulk-translation {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            direction: ltr;
+        }
+        .bulk-button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 5px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .bulk-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .bulk-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .bulk-button.reset {
+            background-color: #dc3545;
+        }
+        .bulk-button.reset:hover {
+            background-color: #c82333;
+        }
+        .bulk-button.clicked {
+            animation: buttonPulse 0.6s ease;
+        }
+        @keyframes buttonPulse {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(0.95);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .bulk-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .bulk-button.ripple::before {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><strong>هَمْزَةُ القَطْعِ</strong><br>Hamzah al-Qath' (The Cutting Hamzah)</h1>
+        
+        <div class="bulk-translation">
+            <p style="margin-bottom: 10px; color: #666; font-size: 14px;">Terjemahkan semua / Translate all:</p>
+            <button class="bulk-button" id="btnEnglish">🌐 All to English</button>
+            <button class="bulk-button" id="btnIndonesia">🇮🇩 Semua ke Indonesia</button>
+            <button class="bulk-button reset" id="btnClose">✕ Tutup Semua</button>
+        </div>
+        
+        <div class="instruction">
+            👆 Klik pada teks Arab untuk melihat pilihan terjemahan<br>
+            Click on Arabic text to see translation options
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <p>هِيَ هَمْزَةُ الَّتِي تَثْبُتُ فِي الاِبْتِدَاءِ وَالْوَصْلِ وَكَانَتْ فِي غَيْرِ مَوَاضِعٍ مَا سَبَقَ. كَاِسْمٍ مُفْرَدٍ، نَحْوَ <span class="underline">أَخٌ وَأًخْتٌ</span>، وَالْمُثَنَّى كَ<span class="underline">أَخَوَيْنِ وَأُخْتَيْنِ</span>. وَالجَمْعُ نَحْوَ <span class="underline">الإِخْوَةُ وَالأَخَوَاتُ</span>. وَكَذَا مَصْدَرُ الثُّلاَثِي وَالرُّبَاعِى نَحْوَ : <span class="underline">أَسْرٍ وَإِسْرَارٍ</span>، وَفِعْلُهَا الْمَاضِي نَحْوَ : <span class="underline">أَسَرَ وَأَسَرَّ</span>.</p>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <p>It is the hamzah that is established in both the beginning and in connected speech, and it occurs in positions other than those previously mentioned. Such as a singular noun, for example: <span class="underline">brother and sister</span>, and the dual form like <span class="underline">two brothers and two sisters</span>. And the plural such as <span class="underline">the brothers and the sisters</span>. Likewise, the verbal noun of the triliteral and quadriliteral verbs, for example: <span class="underline">captivity and concealment</span>, and their past tense verbs, for example: <span class="underline">he captured and he concealed</span>.</p>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <p>Ia adalah hamzah yang tetap (diucapkan) baik ketika di awal kalimat maupun ketika disambung, dan terdapat di tempat-tempat selain yang telah disebutkan sebelumnya. Seperti pada isim mufrad (kata benda tunggal), contohnya <span class="underline">saudara laki-laki dan saudara perempuan</span>, dan pada mutsanna (bentuk dual) seperti <span class="underline">dua saudara laki-laki dan dua saudara perempuan</span>. Dan pada jamak seperti <span class="underline">para saudara laki-laki dan para saudara perempuan</span>. Demikian pula pada mashdar tsulasi dan ruba'i, contohnya: <span class="underline">penawanan dan penyembunyian</span>, dan pada fi'il madhi-nya, contohnya: <span class="underline">dia menawan dan dia menyembunyikan</span>.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <p>وَهَمْزَةُ القَطْعِ تُكْتَبُ فَوْقَ الأَلِفِ إِنْ كَانَتْ حَرَكَتُهَا الفَتْحَةَ أَوْ الضُّمَّةَ ،نَحْوَ <span class="underline">أَمَرَ أُمِرَ</span>، <span class="underline">أَكْرَمَ أُكْرِمَ</span>. وَتَحْتَ الأَلِفِ إِنْ كَانَتْ مَكْسُوْرَةٌ نَحْوَ <span class="underline">إِيْمَانٍ وَالإِيْمَان</span>.</p>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <p>The Hamzah al-Qath' is written above the alif if its vowel is a fathah (َ) or dammah (ُ), for example: <span class="underline">he commanded, it was commanded</span>, <span class="underline">he honored, he was honored</span>. And it is written below the alif if it has a kasrah (ِ), for example: <span class="underline">faith and the faith</span>.</p>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <p>Hamzah Qath' ditulis di atas alif jika harakatnya fathah atau dhammah, contohnya <span class="underline">dia memerintahkan, diperintahkan</span>, <span class="underline">dia memuliakan, dimuliakan</span>. Dan (ditulis) di bawah alif jika (hamzahnya) berkasrah, contohnya <span class="underline">iman dan (kata) iman</span>.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <p>وَهُنَاكَ حُرُوفٌ تَدْخُلُ عَلَى الْهَمْزَةِ وَلاَ تَخْرُخُهَا عَنْ أَوَّلِيَّتِهَا وَهِيَ :</p>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <p>There are letters that enter upon the hamzah without removing it from its initial position, and they are:</p>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <p>Dan ada huruf-huruf yang masuk pada hamzah namun tidak mengeluarkannya dari kedudukannya sebagai huruf awal, yaitu:</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol>
+                    <li>ال، نَحْوَ : الأَمِيْرِ، الإِجْلاَلِ، الأُبَّهَةِ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol>
+                    <li>The definite article "al" (ال), for example: the prince, the reverence, the magnificence.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol>
+                    <li>(Alif lam) ال, contohnya: sang pangeran, keagungan, kemegahan.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="2">
+                    <li>لاَمُ القِسْمِ الدَّاخِلَةِ علَى الفِعْلِ نَحْوَ : لَأُقْسِمُ، لَأُكْرِمَنَّ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="2">
+                    <li>The lam of oath that enters upon the verb, for example: I swear, I shall surely honor.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="2">
+                    <li>Lam qasam yang masuk pada fi'il (kata kerja), contohnya: sungguh aku bersumpah, sungguh aku pasti akan memuliakan.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="3">
+                    <li>اللاَّمُ الجَارَةِ، نَحْوَ : لِأُخْرِجَ، لِأَنَّكَ، لِإِحْسَانِهِ، لِإِخْوِتِهِ، لِأُسْرَتِهِ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="3">
+                    <li>The preposition lam (لِ), for example: to bring out, because you, for his kindness, for his brothers, for his family.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="3">
+                    <li>Lam jarrah (huruf jar لِ), contohnya: untuk mengeluarkan, karena sesungguhnya kamu, untuk kebaikannya, untuk saudara-saudaranya, untuk keluarganya.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="4">
+                    <li>اللاَّمُ الدَّاخِلَةِ عَلَى الْمُبْتَدَأِ أَوِ الْخَبْرِ، نَحْوَ : إِنَّ الصَّدِيْقَ لِأَخِيْكَ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="4">
+                    <li>The lam that enters upon the subject or predicate, for example: Indeed, the friend is truly your brother.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="4">
+                    <li>Lam yang masuk pada mubtada' atau khabar, contohnya: sesungguhnya teman itu benar-benar adalah saudaramu.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="5">
+                    <li>بَاءُ الجَرِّ، نَحْوً : بِأَمْرِ اللهِ، بِإِرِادَتِهِ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="5">
+                    <li>The preposition ba' (بِ), for example: by the command of Allah, by His will.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="5">
+                    <li>Ba' jarr (huruf jar بِ), contohnya: dengan perintah Allah, dengan kehendak-Nya.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="6">
+                    <li>هَمْزَةُ الاِسْتِفْهَامِ الْمَفْتُوْحِ مَا بَعْدَهَا، نَحْوَ : أَأَخْرُجُ؟ أَأَسْجُدُ ؟</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="6">
+                    <li>The interrogative hamzah with a fathah on what follows it, for example: Shall I go out? Shall I prostrate?</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="6">
+                    <li>Hamzah istifham yang (huruf) setelahnya diberi fathah, contohnya: apakah aku keluar? apakah aku sujud?</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="7">
+                    <li>حَرْفُ التَّنْفِيْذِ، نَحْوَ : سَأَقْرَأُ، سَأُرْسِلُ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="7">
+                    <li>The future particle "sa" (سَ), for example: I will read, I will send.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="7">
+                    <li>Huruf tanfidz (huruf yang menunjukkan masa depan سَ), contohnya: aku akan membaca, aku akan mengirim.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="arabic-text" onclick="toggleOptions(this)">
+                <ol start="8">
+                    <li>الفَاءُ واَلوَاوُ، نَحْوَ : فَإِنَّكَ أَخِيْ وَإِنَّكَ صَدِيْقِيْ.</li>
+                </ol>
+            </div>
+            <div class="translation-options">
+                <button class="lang-button" onclick="showTranslation(this, 'en', event)">English</button>
+                <button class="lang-button" onclick="showTranslation(this, 'id', event)">Indonesia</button>
+            </div>
+            <div class="translation-text" data-lang="en">
+                <ol start="8">
+                    <li>The letters fa' (فَ) and waw (وَ), for example: For indeed you are my brother and indeed you are my friend.</li>
+                </ol>
+            </div>
+            <div class="translation-text" data-lang="id">
+                <ol start="8">
+                    <li>Huruf fa' (فَ) dan waw (وَ), contohnya: maka sungguh kamu saudaraku dan sungguh kamu sahabatku.</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleOptions(arabicElement) {
+            const section = arabicElement.parentElement;
+            const options = section.querySelector('.translation-options');
+            const allTranslations = section.querySelectorAll('.translation-text');
+            
+            // Add click animation
+            arabicElement.classList.add('clicked');
+            setTimeout(() => arabicElement.classList.remove('clicked'), 500);
+            
+            options.classList.toggle('show');
+            arabicElement.classList.toggle('active');
+            
+            if (!options.classList.contains('show')) {
+                allTranslations.forEach(trans => trans.classList.remove('show'));
+                section.querySelectorAll('.lang-button').forEach(btn => btn.classList.remove('active'));
+            }
+        }
+
+        function showTranslation(button, lang, event) {
+            event.stopPropagation();
+            
+            const section = button.closest('.section');
+            const allTranslations = section.querySelectorAll('.translation-text');
+            const selectedTranslation = section.querySelector('.translation-text[data-lang="' + lang + '"]');
+            const allButtons = section.querySelectorAll('.lang-button');
+            
+            allTranslations.forEach(trans => trans.classList.remove('show'));
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            
+            selectedTranslation.classList.add('show');
+            button.classList.add('active');
+        }
+
+        function translateAll(lang) {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    const arabicText = section.querySelector('.arabic-text');
+                    const options = section.querySelector('.translation-options');
+                    const allTranslations = section.querySelectorAll('.translation-text');
+                    const selectedTranslation = section.querySelector('.translation-text[data-lang="' + lang + '"]');
+                    const allButtons = section.querySelectorAll('.lang-button');
+                    const targetButton = Array.from(allButtons).find(btn => btn.textContent.includes(lang === 'en' ? 'English' : 'Indonesia'));
+                    
+                    if (options) options.classList.add('show');
+                    if (arabicText) {
+                        arabicText.classList.add('active');
+                        arabicText.classList.add('clicked');
+                        setTimeout(() => arabicText.classList.remove('clicked'), 500);
+                    }
+                    
+                    allTranslations.forEach(trans => trans.classList.remove('show'));
+                    allButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    if (selectedTranslation) selectedTranslation.classList.add('show');
+                    if (targetButton) targetButton.classList.add('active');
+                }, index * 100); // Stagger animation
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeAll() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.querySelector('.translation-options')?.classList.remove('show');
+                    section.querySelectorAll('.translation-text').forEach(el => el.classList.remove('show'));
+                    section.querySelector('.arabic-text')?.classList.remove('active');
+                    section.querySelectorAll('.lang-button').forEach(el => el.classList.remove('active'));
+                }, index * 50); // Faster stagger for closing
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Event listeners for bulk buttons with ripple effect
+        function addRippleEffect(button) {
+            button.classList.add('clicked');
+            button.classList.add('ripple');
+            setTimeout(() => {
+                button.classList.remove('clicked');
+                button.classList.remove('ripple');
+            }, 600);
+        }
+
+        document.getElementById('btnEnglish').addEventListener('click', function() {
+            addRippleEffect(this);
+            translateAll('en');
+        });
+
+        document.getElementById('btnIndonesia').addEventListener('click', function() {
+            addRippleEffect(this);
+            translateAll('id');
+        });
+
+        document.getElementById('btnClose').addEventListener('click', function() {
+            addRippleEffect(this);
+            closeAll();
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.section') && !event.target.closest('.bulk-translation')) {
+                document.querySelectorAll('.translation-options.show').forEach(el => el.classList.remove('show'));
+                document.querySelectorAll('.translation-text.show').forEach(el => el.classList.remove('show'));
+                document.querySelectorAll('.arabic-text.active').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.lang-button.active').forEach(el => el.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Pembelajaran Bahasa Arab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #97bc62;
+            --accent-color: #d4af37;
+            --dark-bg: #1a3a1a;
+            --light-bg: #f8f9fa;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans Arabic', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            direction: ltr;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            direction: rtl;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .welcome-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .welcome-section p {
+            color: var(--text-light);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem auto;
+            max-width: 800px;
+        }
+
+        .alert-box strong {
+            color: #856404;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .menu-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .menu-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .menu-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-button {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .menu-button:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-button:active {
+            transform: scale(0.98);
+        }
+
+        .content-display {
+            display: none;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .content-display.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-header {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .content-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .back-button {
+            padding: 0.6rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .back-button:hover {
+            background: var(--dark-bg);
+            transform: scale(1.05);
+        }
+
+        .iframe-container {
+            background: var(--white);
+            border-radius: 0 0 15px 15px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-frame {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            display: block;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            z-index: 10;
+        }
+
+        .loading-overlay.hidden {
+            display: none;
+        }
+
+        .footer {
+            background: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-frame {
+                height: 70vh;
+            }
+        }
+
+        .spinner {
+            border: 4px solid rgba(44, 95, 45, 0.1);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>مَوَادُّ تَعْلِيْمِ اللُّغَةِ العَرَبِيَّةِ</h1>
+            <p class="subtitle">Materi Pembelajaran Bahasa Arab Terpadu</p>
+        </div>
+    </header>
+
+    <div class="nav-container" id="mainMenu">
+        <div class="welcome-section">
+            <h2>Selamat Datang</h2>
+            <p>
+                Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang di platform pembelajaran bahasa Arab. 
+                Pilih salah satu materi di bawah ini untuk memulai pembelajaran Anda.
+            </p>
+            <div class="alert-box">
+                <strong>⚠️ PENTING:</strong> Pastikan semua 5 file HTML berada dalam <strong>folder yang sama</strong>!
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-icon">📝</div>
+                <h3>Imla' & Insya'</h3>
+                <p>Pelajari teknik penulisan dan dikte bahasa Arab dengan metode yang sistematis.</p>
+                <button class="menu-button" onclick="showContent('Imla\' & Insya\'', 'Imla-Insya.html')">
+                    Buka Materi
+                </button>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">📚</div>
+                <h3>Matan Jurumiyah</h3>
+                <p>Materi lengkap tentang nahwu (tata bahasa Arab) yang detail dan komprehensif.</p>
+                <button class="menu-button" onclick="showContent('Matan Jurumiyah', 'matan-jurumiyah-super-lengkap.html')">
+                    Buka Materi
+                </button>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">💬</div>
+                <h3>Muhadatsah & Mufradat</h3>
+                <p>Kumpulan percakapan dan kosakata bahasa Arab dalam format tabel.</p>
+                <button class="menu-button" onclick="showContent('Muhadatsah & Mufradat', 'muhadatsah-mufradat-tabel.html')">
+                    Buka Materi
+                </button>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">🔤</div>
+                <h3>Sharaf (Morfologi)</h3>
+                <p>Mempelajari perubahan bentuk kata dalam bahasa Arab (shorof).</p>
+                <button class="menu-button" onclick="showContent('Sharaf (Morfologi)', 'Sharaf-3_2_.html')">
+                    Buka Materi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-display" id="contentArea">
+        <div class="content-header">
+            <h2 class="content-title" id="contentTitle"></h2>
+            <button class="back-button" onclick="backToMenu()">← Kembali ke Menu</button>
+        </div>
+        <div class="iframe-container">
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="spinner"></div>
+                <span>Memuat materi...</span>
+            </div>
+            <iframe id="contentFrame" class="content-frame"></iframe>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 Materi Pembelajaran Bahasa Arab | Semoga bermanfaat</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+            وَقُل رَّبِّ زِدْنِي عِلْمًا - "Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan"
+        </p>
+    </footer>
+
+    <script>
+        function showContent(title, fileName) {
+            const mainMenu = document.getElementById('mainMenu');
+            const contentArea = document.getElementById('contentArea');
+            const contentTitle = document.getElementById('contentTitle');
+            const contentFrame = document.getElementById('contentFrame');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
+            console.log('Membuka:', fileName);
+            
+            loadingOverlay.classList.remove('hidden');
+            mainMenu.style.display = 'none';
+            contentArea.classList.add('active');
+            contentTitle.textContent = title;
+            
+            contentFrame.src = fileName;
+            
+            setTimeout(() => {
+                if (contentFrame.src.includes(fileName)) {
+                    loadingOverlay.classList.add('hidden');
+                }
+            }, 1500);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToMenu() {
+            const mainMenu = document.getElementById('mainMenu');
+            const contentArea = document.getElementById('contentArea');
+            const contentFrame = document.getElementById('contentFrame');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
+            mainMenu.style.display = 'block';
+            contentArea.classList.remove('active');
+            contentFrame.src = '';
+            loadingOverlay.classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('contentFrame').addEventListener('load', function() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+            console.log('✓ Materi berhasil dimuat');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('contentArea').classList.contains('active')) {
+                    backToMenu();
+                }
+            }
+        });
+
+        console.log('%c مرحبا بكم ', 'background: #2c5f2d; color: white; font-size: 18px; padding: 8px;');
+        console.log('📚 Selamat belajar bahasa Arab!');
+        console.log('\n📁 Pastikan file-file ini ada di folder yang sama:');
+        console.log('  ✓ index.html');
+        console.log('  ✓ Imla-Insya.html');
+        console.log('  ✓ matan-jurumiyah-super-lengkap.html');
+        console.log('  ✓ muhadatsah-mufradat-tabel.html');
+        console.log('  ✓ Sharaf-3_2_.html');
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhadatsah - Mufradat 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Traditional Arabic', 'Scheherazade', 'Amiri', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            direction: rtl;
+        }
+        
+        td {
+            border: 1px solid #000;
+            padding: 15px;
+            vertical-align: top;
+        }
+        
+        /* Tabel 1 - 4 kolom */
+        .table1 td:nth-child(1),
+        .table1 td:nth-child(3) {
+            width: 12%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        
+        .table1 td:nth-child(2),
+        .table1 td:nth-child(4) {
+            width: 38%;
+            font-size: 20px;
+        }
+        
+        /* Tabel 2, 3, 4 - 2 kolom */
+        .table2 td,
+        .table3 td,
+        .table4 td {
+            width: 50%;
+            font-size: 20px;
+        }
+        
+        .arabic {
+            font-size: 20px;
+            line-height: 2;
+        }
+        
+        .translation {
+            color: #0066cc;
+            font-size: 16px;
+            margin-top: 8px;
+            display: block;
+        }
+        
+        hr {
+            margin: 50px 0;
+            border: none;
+            border-top: 2px solid #ccc;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TABEL 1: Percakapan dengan 4 kolom -->
+        <table class="table1">
+            <tr>
+                <td>الأب :</td>
+                <td>أَهْلاً وَسَهْلاً
+                    <span class="translation">Selamat datang</span>
+                </td>
+                <td>الأولاد :</td>
+                <td>أَهْلاً يَا أَبِيْ
+                    <span class="translation">Selamat datang wahai ayahku</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>كَيْفَ اليَوْمُ الأَوَّلُ فِي الْمَدْرَسَةِ ؟
+                    <span class="translation">Bagaimana hari pertama di sekolah?</span>
+                </td>
+                <td>أحمد :</td>
+                <td>يَوْمٌ مُتْعِبٌ جِدًّا بَعْدَ العُطْلَةِ الطَوِيْلَةِ
+                    <span class="translation">Hari yang sangat melelahkan setelah liburan panjang</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>أَنْتَ تُحِبُّ النَّوْمَ !! مَتَى تَبْدَأُ الحِصَّةُ الأُوْلَى فِي مَدْرَسَتِكَ ؟
+                    <span class="translation">Kamu suka tidur!! Kapan pelajaran pertama dimulai di sekolahmu?</span>
+                </td>
+                <td>أحمد :</td>
+                <td>تَبْدَأُ فِي السَّاعَةِ السَّابِعَةِ صَبَاحًا. هَذَا مُبَكِّرٌ جِدًّا.
+                    <span class="translation">Dimulai pada pukul tujuh pagi. Ini sangat pagi sekali.</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>وَمَتَى يَنْتَهِي اليَوْمُ الدِّرَاسِيُّ ؟
+                    <span class="translation">Dan kapan hari belajar berakhir?</span>
+                </td>
+                <td>أحمد :</td>
+                <td>يَنْتَهِي فِي السَّاعَةِ الثَّانِيَةِ ظُهْرًا . هَذَا طَوِيْلٌ جِدًّا، وَأُرِيْدُ أَنْ أَنَامَ قَبْلَ العَصْرِ
+                    <span class="translation">Berakhir pada pukul dua siang. Ini sangat lama, dan aku ingin tidur sebelum ashar</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>وَأَنْتِ يَا سَارَة. مَتَى يَبْدَأُ يَوْمُ الدِّرَاسِيُّ فِي مَدْرَسَتِكِ ؟
+                    <span class="translation">Dan kamu wahai Sarah. Kapan hari belajar dimulai di sekolahmu?</span>
+                </td>
+                <td>سارة :</td>
+                <td>يَبْدَأُ فِي السَّاعَةِ السَّابِعَةِ وَالنِّصْفِ صَبَاحًا.
+                    <span class="translation">Dimulai pada pukul setengah delapan pagi.</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>وَمَتَى تَنْتَهِي الحِصَّةُ الأَخِيْرَةُ ؟
+                    <span class="translation">Dan kapan pelajaran terakhir berakhir?</span>
+                </td>
+                <td>سارة :</td>
+                <td>تَنْتَهِي فِي السَّاعَةِ الثَّانِيَةِ وَالنِّصْفِ ظُهْرًا.
+                    <span class="translation">Berakhir pada pukul setengah tiga siang.</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>مَعْقُوْلٌ ؟ هَذَا مُتَأَخِّرٌ جِدًّا
+                    <span class="translation">Benarkah? Ini sangat telat sekali</span>
+                </td>
+                <td>سارة :</td>
+                <td>يَا وَالِدِي، تَفَضَّلْ، هَذِهِ هِيَ الوَاجِبَاتُ الْمَنْزِلِيَّةُ. أَحْتَاجُ إِلَى أَقْلاَمٍ، وَدَفَاتِرَ، وَأَدَوَاتٍ مَدْرَسِيَّةٍ أُخْرَى.
+                    <span class="translation">Wahai ayahku, silakan, ini PR-nya. Aku butuh pulpen, buku tulis, dan alat-alat sekolah lainnya.</span>
+                </td>
+            </tr>
+            <tr>
+                <td>الأب :</td>
+                <td>سَأُحْضِرُهَا مَسَاءً إِنْ شَاءَ اللهُ
+                    <span class="translation">Aku akan membawakannya nanti sore insya Allah</span>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <!-- TABEL 2: Mufradat dengan 2 kolom -->
+        <table class="table2">
+            <tr>
+                <td>1. كَنَسَ - يَكْنُسُ - كَنْسًا<br>
+                    المثال : - تَكْنُسُ الخَادِمَةُ السَّاحَةَ
+                    <span class="translation">Menyapu - Contoh: Pembantu (pr) menyapu halaman</span>
+                </td>
+                <td>6. فَرِحَ - يَفْرَحُ - فَرَحًا<br>
+                    المثال : - فَرِحْتُ كَثِيْرًا بِمَجِيْئِكَ اليَوْمَ
+                    <span class="translation">Gembira - Contoh: Aku sangat gembira dengan kedatanganmu hari ini</span>
+                </td>
+            </tr>
+            <tr>
+                <td>2. طَبَخَ - يَطْبَخُ - طَبْخًا<br>
+                    المثال : - أُخْتِيْ تَطْبَخُ الرُّزَّ فِي الْمَطْبَخِ
+                    <span class="translation">Memasak - Contoh: Saudariku (pr) memasak nasi di dapur</span>
+                </td>
+                <td>7. حَزِنَ - يَحْزَنُ – حُزْنًا<br>
+                    المثال : - لاَ تَحْزَنْ إِنَّ اللهَ مَعَنَا
+                    <span class="translation">Sedih - Contoh: Jangan bersedih, sesungguhnya Allah bersama kita</span>
+                </td>
+            </tr>
+            <tr>
+                <td>3. لَبِسَ - يَلْبَسُ - لُبْسًا<br>
+                    المثال : - لَبِسْتُ فِي العِيْدِ ثَوْبًا جَدِيْدًا
+                    <span class="translation">Memakai - Contoh: Aku memakai pakaian baru di hari raya</span>
+                </td>
+                <td>8. اِشْتَرَى - يَشْتَرِى - شِرَاءً<br>
+                    المثال : - اِشْتَرَيْتُ هَذَا الثَّوْبَ فِي السُّوْقِ
+                    <span class="translation">Membeli - Contoh: Aku membeli pakaian ini di pasar</span>
+                </td>
+            </tr>
+            <tr>
+                <td>4. سَكَنَ - يَسْكُنُ – سُكُوْنًا<br>
+                    المثال : - يَسْكُنُ عَلِيٌّ فِي القَرْيَةِ
+                    <span class="translation">Tinggal - Contoh: Ali tinggal di desa</span>
+                </td>
+                <td>9. بَاعَ - يَبِيْعُ - بَيْعًا<br>
+                    المثال : - التَّاجِرُ يَبِيْعُ القُمَاشَ فِي الدُّكَّانِ
+                    <span class="translation">Menjual - Contoh: Pedagang menjual kain di toko</span>
+                </td>
+            </tr>
+            <tr>
+                <td>5. أَرَادَ - يُرِيْدُ - إِرَادَةً<br>
+                    المثال : - أُرِيْدُ أَنْ أَتَعَلَّمَ اللُّغَةَ العَرَبِيَّةَ
+                    <span class="translation">Ingin - Contoh: Aku ingin belajar bahasa Arab</span>
+                </td>
+                <td>10. لَعِبَ - يَلْعَبُ – لَعْبًا<br>
+                    المثال : - أُحِبُّ لَعْبَ كُرَةِ القَدَمِ
+                    <span class="translation">Bermain - Contoh: Aku suka bermain sepak bola</span>
+                </td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <!-- TABEL 3: Ungkapan dengan 2 kolom -->
+        <table class="table3">
+            <tr>
+                <td>ق : كَيْفَ حَالُكَ ؟ / كَيْفَ اَخْبَارُكَ ؟
+                    <span class="translation">Tanya: Bagaimana kabarmu?</span>
+                </td>
+                <td>ق : صَبَاحُ الْخَيْرِ
+                    <span class="translation">Tanya: Selamat pagi</span>
+                </td>
+            </tr>
+            <tr>
+                <td>ج : الحمد لله، بِخَيْرٍ وَعَافِيَةٍ / أَنَا مَبْسُوْطٌ
+                    <span class="translation">Jawab: Alhamdulillah, baik dan sehat / Aku senang</span>
+                </td>
+                <td>ج : صَبَاحُ النُّوْرِ
+                    <span class="translation">Jawab: Selamat pagi (jawaban)</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>صَبَاحُ السُّرُوْرِ وَالسَّعَادَةِ
+                    <span class="translation">Pagi yang penuh kegembiraan dan kebahagiaan</span>
+                </td>
+            </tr>
+            <tr>
+                <td>س : هَلْ أَفْطَرْتَ ؟ / هَلْ تَنَاوَلْتَ الفُطُوْرَ ؟
+                    <span class="translation">Tanya: Apakah kamu sudah sarapan?</span>
+                </td>
+                <td>صَبَاحُ الْبَهْجَةِ وَالنُّوْرِ
+                    <span class="translation">Pagi yang penuh keceriaan dan cahaya</span>
+                </td>
+            </tr>
+            <tr>
+                <td>ج : نَعَمْ، أَفْطَرْتُ / تَنَاوَلْتُ الفُطُوْرَ
+                    <span class="translation">Jawab: Ya, aku sudah sarapan</span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>ق : نَهَارُكُمْ سَعِيْدٌ
+                    <span class="translation">Tanya: Selamat siang</span>
+                </td>
+            </tr>
+            <tr>
+                <td>س : هَلْ تَغَدَّيْتَ؟ / هَلْ تَنَاوَلْتَ الغَدَاءَ؟
+                    <span class="translation">Tanya: Apakah kamu sudah makan siang?</span>
+                </td>
+                <td>ج : سَعِيْدٌ مُبَارَكٌ
+                    <span class="translation">Jawab: Bahagia penuh berkah</span>
+                </td>
+            </tr>
+            <tr>
+                <td>ج : نَعَمْ، تَغَدَّيْتُ / تَنَاوَلْتُ الغَدَاءَ
+                    <span class="translation">Jawab: Ya, aku sudah makan siang</span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>ق : مَسَاءُ الْخَيْرِ / كَيْفَ اَمْسَيْتَ ؟
+                    <span class="translation">Tanya: Selamat sore / Bagaimana soremu?</span>
+                </td>
+            </tr>
+            <tr>
+                <td>س : هَلْ تَعَشَّيْتَ؟ / هَلْ تَنَاوَلْتَ العَشَاءَ؟
+                    <span class="translation">Tanya: Apakah kamu sudah makan malam?</span>
+                </td>
+                <td>ج : مَسَاءُ النُّوْرِ
+                    <span class="translation">Jawab: Sore yang penuh cahaya</span>
+                </td>
+            </tr>
+            <tr>
+                <td>ج : نَعَمْ، تَعَشَّيْتُ / تَنَاوَلْتُ العَشَاءَ
+                    <span class="translation">Jawab: Ya, aku sudah makan malam</span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>ق : لَيْلَتُكَ السَّعِيْدَةُ
+                    <span class="translation">Tanya: Selamat malam</span>
+                </td>
+            </tr>
+            <tr>
+                <td>هَيَّا نُفْطِرُ<br>Ayo sarapan
+                </td>
+                <td>ج : سَعِيْدَةٌ مُبَارَكَةٌ
+                    <span class="translation">Jawab: Bahagia penuh berkah</span>
+                </td>
+            </tr>
+            <tr>
+                <td>هَيَّا نَتَغَدَّى<br>Ayo makan siang
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>هَيَّا نَتَعَشَّى<br>Ayo makan malam
+                </td>
+                <td>س : هَلْ صَلَّيْتَ يَا ... ؟
+                    <span class="translation">Tanya: Apakah kamu sudah shalat wahai...?</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>ج : صَلَّيْتُ يَا...
+                    <span class="translation">Jawab: Aku sudah shalat wahai...</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>س : هَلْ لَكَ / عِنْدَكَ / لَدَيْكَ ... ؟
+                </td>
+                <td>Apakah kamu punya… ?</td>
+            </tr>
+            <tr>
+                <td>ج : لِيْ / عِنْدِيْ / لَدَيَّ
+                </td>
+                <td>Aku punya….</td>
+            </tr>
+            <tr>
+                <td>ج : لَيْسَ لِيْ / مَا عِنْدِيْ / مَا لَدَيَّ
+                </td>
+                <td>Aku tidak punya…</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <!-- TABEL 4: Ucapan dengan 2 kolom -->
+        <table class="table4">
+            <tr>
+                <td>نَوْمُكَ السَّعِيْدُ</td>
+                <td>Met bobo yaa</td>
+            </tr>
+            <tr>
+                <td>حِلْمُكَ السَّعِيْدُ</td>
+                <td>Mimpi indah yaa</td>
+            </tr>
+            <tr>
+                <td>مِلاَدُكَ السَّعِيْدُ / سَنَة حِلْوَة</td>
+                <td>HBD yaa</td>
+            </tr>
+            <tr>
+                <td>مَعَ النَّجَاحِ / بِالتَّوْفِيْقِ</td>
+                <td>Semoga sukses</td>
+            </tr>
+            <tr>
+                <td>مَبْرُوْكٌ فِي نَجَاحِكَ</td>
+                <td>Selamat atas kesukesanmu</td>
+            </tr>
+            <tr>
+                <td>مَبْرُوْكٌ فِي زَوَاجِكَ</td>
+                <td>Selamat atas pernikahanmu</td>
+            </tr>
+            <tr>
+                <td>بَارَكَ اللهُ فِي الْمَوْهُوْبِ</td>
+                <td>Ucapan untuk orang yang dikaruniai anak</td>
+            </tr>
+            <tr>
+                <td>أَعْظَمَ اللهُ أَجْرَكَ</td>
+                <td>Ucapan bela sungkawa</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
