@@ -144,6 +144,18 @@
             cursor: pointer;
         }
 
+        /* image slide specifics */
+        .image-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width:768px) {
+            .image-slide img { height: 200px }
+        }
+
         .slide:nth-child(1) { background: linear-gradient(135deg,#2c5f2d,#97bc62); }
         .slide:nth-child(2) { background: linear-gradient(135deg,#1a4d7a,#2c7da0); }
         .slide:nth-child(3) { background: linear-gradient(135deg,#6a2c70,#b83279); }
@@ -398,32 +410,18 @@
 
     <div class="nav-container" id="mainMenu">
         <div class="welcome-section">
-            <h2>Selamat Datang</h2>
-            <p>
-                Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang di platform pembelajaran bahasa Arab. 
-                Pilih salah satu materi di bawah ini untuk memulai pembelajaran Anda.
-            </p>
-            <!-- Slideshow replacing the old warning box -->
-            <div class="slideshow" aria-label="Slideshow Materi">
-                <div class="slide" onclick="showContent('Imla\' & Insya\'','Imla-Insya.html')" style="opacity:1">
-                    <div>
-                        <h4>Imla' & Insya'</h4>
-                        <p>Pelajari penulisan dan komposisi bahasa Arab — klik untuk membuka materi.</p>
-                    </div>
+            <!-- Image slideshow (kitab / library / learning) replacing the white header area -->
+            <div class="slideshow image-slideshow" aria-label="Slideshow Gambar Materi">
+                <div class="slide image-slide" onclick="showContent('Matan Jurumiyah','matan-jurumiyah-super-lengkap.html')" style="opacity:1">
+                    <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=1200&q=80" alt="Manuscript" />
                 </div>
-                <div class="slide" onclick="showContent('Matan Jurumiyah','matan-jurumiyah-super-lengkap.html')">
-                    <div>
-                        <h4>Matan Al-Ajrumiyyah</h4>
-                        <p>Teks lengkap dan terstruktur untuk mempelajari nahwu (tata bahasa).</p>
-                    </div>
+                <div class="slide image-slide" onclick="showContent('Imla\' & Insya\'','Imla-Insya.html')">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" alt="Books on shelf" />
                 </div>
-                <div class="slide" onclick="showContent('Muhadatsah & Mufradat','muhadatsah-mufradat-tabel.html')">
-                    <div>
-                        <h4>Muhadatsah & Mufradat</h4>
-                        <p>Kumpulan percakapan dan kosakata penting untuk percakapan sehari-hari.</p>
-                    </div>
+                <div class="slide image-slide" onclick="showContent('Muhadatsah & Mufradat','muhadatsah-mufradat-tabel.html')">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80" alt="Open book" />
                 </div>
-                <div class="slideshow-dots" role="tablist" aria-label="Pilih slide">
+                <div class="slideshow-dots" role="tablist" aria-label="Pilih slide gambar">
                     <div class="dot active" role="tab" aria-selected="true"></div>
                     <div class="dot" role="tab" aria-selected="false"></div>
                     <div class="dot" role="tab" aria-selected="false"></div>
