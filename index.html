@@ -118,6 +118,43 @@
             color: #856404;
         }
 
+        /* Slideshow styles */
+        .slideshow {
+            max-width: 800px;
+            margin: 1rem auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #fff;
+            text-align: center;
+            font-size: 1.05rem;
+            transition: opacity 0.6s ease;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .slide:nth-child(1) { background: linear-gradient(135deg,#2c5f2d,#97bc62); }
+        .slide:nth-child(2) { background: linear-gradient(135deg,#1a4d7a,#2c7da0); }
+        .slide:nth-child(3) { background: linear-gradient(135deg,#6a2c70,#b83279); }
+
+        .slide h4 { font-size: 1.2rem; margin-bottom: 6px; font-weight:700 }
+        .slide p { font-size: 0.95rem; opacity: 0.95 }
+
+        .slideshow-dots { display:flex; justify-content:center; gap:10px; padding:12px; background: rgba(255,255,255,0.03); }
+        .dot { width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,0.5); cursor:pointer }
+        .dot.active { background: #fff }
+
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -366,8 +403,31 @@
                 Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang di platform pembelajaran bahasa Arab. 
                 Pilih salah satu materi di bawah ini untuk memulai pembelajaran Anda.
             </p>
-            <div class="alert-box">
-                <strong>⚠️ PENTING:</strong> Pastikan semua 5 file HTML berada dalam <strong>folder yang sama</strong>!
+            <!-- Slideshow replacing the old warning box -->
+            <div class="slideshow" aria-label="Slideshow Materi">
+                <div class="slide" onclick="showContent('Imla\' & Insya\'','Imla-Insya.html')" style="opacity:1">
+                    <div>
+                        <h4>Imla' & Insya'</h4>
+                        <p>Pelajari penulisan dan komposisi bahasa Arab — klik untuk membuka materi.</p>
+                    </div>
+                </div>
+                <div class="slide" onclick="showContent('Matan Jurumiyah','matan-jurumiyah-super-lengkap.html')">
+                    <div>
+                        <h4>Matan Al-Ajrumiyyah</h4>
+                        <p>Teks lengkap dan terstruktur untuk mempelajari nahwu (tata bahasa).</p>
+                    </div>
+                </div>
+                <div class="slide" onclick="showContent('Muhadatsah & Mufradat','muhadatsah-mufradat-tabel.html')">
+                    <div>
+                        <h4>Muhadatsah & Mufradat</h4>
+                        <p>Kumpulan percakapan dan kosakata penting untuk percakapan sehari-hari.</p>
+                    </div>
+                </div>
+                <div class="slideshow-dots" role="tablist" aria-label="Pilih slide">
+                    <div class="dot active" role="tab" aria-selected="true"></div>
+                    <div class="dot" role="tab" aria-selected="false"></div>
+                    <div class="dot" role="tab" aria-selected="false"></div>
+                </div>
             </div>
         </div>
 
@@ -492,6 +552,47 @@
         console.log('  ✓ matan-jurumiyah-super-lengkap.html');
         console.log('  ✓ muhadatsah-mufradat-tabel.html');
         console.log('  ✓ Sharaf-3_2_.html');
+    </script>
+    <script>
+        // Simple slideshow logic: auto-advance + dot controls
+        function initSlideshow() {
+            const slides = Array.from(document.querySelectorAll('.slideshow .slide'));
+            const dots = Array.from(document.querySelectorAll('.slideshow .dot'));
+            if (!slides.length) return;
+            let idx = 0;
+            let timer = null;
+
+            function show(i) {
+                slides.forEach((s, j) => {
+                    s.style.opacity = (j === i) ? '1' : '0';
+                });
+                dots.forEach((d, j) => {
+                    d.classList.toggle('active', j === i);
+                    d.setAttribute('aria-selected', j === i ? 'true' : 'false');
+                });
+            }
+
+            function start() {
+                timer = setInterval(() => {
+                    idx = (idx + 1) % slides.length;
+                    show(idx);
+                }, 4000);
+            }
+
+            dots.forEach((d, i) => {
+                d.addEventListener('click', () => {
+                    clearInterval(timer);
+                    idx = i;
+                    show(idx);
+                    start();
+                });
+            });
+
+            show(0);
+            start();
+        }
+
+        document.addEventListener('DOMContentLoaded', initSlideshow);
     </script>
 </body>
 </html>
