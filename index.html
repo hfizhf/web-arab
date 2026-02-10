@@ -452,6 +452,15 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .placeholder-message {
+            padding: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+            min-height: 50vh;
+            display: block;
+            background: var(--white);
+        }
     </style>
 </head>
 <body>
@@ -497,6 +506,15 @@
                     Buka Materi
                 </button>
             </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">✍️</div>
+                <h3>imla insya 2</h3>
+                <p>Varian tambahan dari materi Imla. (Placeholder)</p>
+                <button class="menu-button" onclick="showPlaceholder('imla insya 2')">
+                    Buka Materi
+                </button>
+            </div> 
 
             <div class="menu-card">
                 <div class="menu-icon">📚</div>
@@ -583,15 +601,45 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function showPlaceholder(title) {
+            const mainMenu = document.getElementById('mainMenu');
+            const contentArea = document.getElementById('contentArea');
+            const contentTitle = document.getElementById('contentTitle');
+            const contentFrame = document.getElementById('contentFrame');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
+            mainMenu.style.display = 'none';
+            contentArea.classList.add('active');
+            contentTitle.textContent = title;
+
+            // hide iframe and show placeholder message
+            contentFrame.style.display = 'none';
+            let placeholder = document.getElementById('placeholderMessage');
+            if (!placeholder) {
+                placeholder = document.createElement('div');
+                placeholder.id = 'placeholderMessage';
+                placeholder.className = 'placeholder-message';
+                placeholder.innerHTML = '<div style="padding:2rem; text-align:center; color:var(--primary-color)"><h3>Materi belum tersedia</h3><p>Akan segera ditambahkan.</p></div>';
+                document.querySelector('.iframe-container').appendChild(placeholder);
+            } else {
+                placeholder.style.display = 'block';
+            }
+            loadingOverlay.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function backToMenu() {
             const mainMenu = document.getElementById('mainMenu');
             const contentArea = document.getElementById('contentArea');
             const contentFrame = document.getElementById('contentFrame');
             const loadingOverlay = document.getElementById('loadingOverlay');
+            const placeholder = document.getElementById('placeholderMessage');
 
             mainMenu.style.display = 'block';
             contentArea.classList.remove('active');
             contentFrame.src = '';
+            contentFrame.style.display = 'block';
+            if (placeholder) placeholder.style.display = 'none';
             loadingOverlay.classList.remove('hidden');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
