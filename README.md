@@ -78,8 +78,8 @@ Pembelajaran tentang perubahan bentuk kata (morfologi) dalam bahasa Arab dengan 
 
 ## 🔗 Social Media
 
-GitHub: [@hfizhf](https://github.com/hfizhf)
-
+GitHub    : [@hfizhf](https://github.com/hfizhf)
+instagram : @hfizhf_
 ## 📄 Lisensi
 
 Bebas digunakan untuk tujuan pendidikan.
